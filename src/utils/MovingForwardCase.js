@@ -1,6 +1,10 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
+import { FORWARD_MATCHING_POINT, FORWARD_DASH } from '../const/Messages';
 
 export const movingForwardCase = () => {
   const number = MissionUtils.Random.picktrueNumberInRange(0, 9);
-  return number >= 4; //4 이상 true 반환
+
+  if (number >= FORWARD_MATCHING_POINT) {
+    Console.print(FORWARD_DASH);
+  }
 };
