@@ -1,6 +1,6 @@
-import { QUESTION_CAR_NAME, ERROR_MESSAGE } from "../const/Messages";
+import { QUESTION_CAR_NAME, ERROR_WRONG_NAME } from "../const/Messages";
 
-class CarNameManager {
+class UserInputCarName {
   constructor() {
     this.members = [];
   }
@@ -15,9 +15,8 @@ class CarNameManager {
 
   setCarNames(carNames) {
     const carNamesValid = carNames.every((name) => name.length <= 5);
-
     if (!carNamesValid) {
-      throw new Error(ERROR_MESSAGE);
+      throw new Error(ERROR_WRONG_NAME);
     }
 
     this.members = carNames;
@@ -28,8 +27,8 @@ class CarNameManager {
   }
 }
 
-/* const manager = new CarNameManager();
+/* const manager = new UserInputCarName();
 manager.inputCarName();
 Console.print(manager.getCarName()); */
 
-export default CarNameManager;
+export default UserInputCarName;
