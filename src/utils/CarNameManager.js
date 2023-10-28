@@ -1,4 +1,4 @@
-import { QUESTION_CAR_NAME, ERROR_MESSAGE } from '../const/Messages';
+import { QUESTION_CAR_NAME, ERROR_MESSAGE } from "../const/Messages";
 
 class CarNameManager {
   constructor() {
@@ -8,7 +8,7 @@ class CarNameManager {
   async inputCarName() {
     Console.print(QUESTION_CAR_NAME);
     const userInput = await Console.readLineAsync();
-    const carNames = userInput.split(',').map((name) => name.trim());
+    const carNames = userInput.split(",").map((name) => name.trim());
 
     this.setCarNames(carNames);
   }
@@ -24,7 +24,7 @@ class CarNameManager {
   }
 
   getCarName() {
-    return this.members.join(',');
+    return this.members.join(",");
   }
 }
 
