@@ -1,25 +1,39 @@
-import { Console } from "@woowacourse/mission-utils";
 import UserInputCarName from "./utils/UserInputCarName";
 import ShowGameResult from "./utils/ShowGameResult";
 import RoundManager from "./utils/RoundManager";
+import UserInputRound from "./utils/UserInputRound";
 
 class App {
   constructor() {
     this.carManager = new UserInputCarName();
+    this.inputTry = new UserInputRound();
   }
 
   async play() {
-    this.setupGame();
+    await this.setupGame();
+    await this.playRound();
   }
 
   async setupGame() {
     this.carPositions = await this.carManager.setupCarPositions();
+    this.rounds = await this.inputTry.inputRounds();
     this.gameResult = new ShowGameResult(this.carPositions);
     this.roundManager = new RoundManager(this.carPositions);
   }
 
-  playRound() {
-    this.roundManager.playRound();
+  /*   async playRounds() {
+    let winners;
+    do {
+      await this.playRound();
+      winners = this.findWinner();
+    } while (winners.length === 0);
+
+    this.printGameResult(winners);
+  } */
+
+  async playRound() {
+    await this.roundManager.playRound();
+    this.printRoundResult();
   }
 
   printRoundResult() {
@@ -27,11 +41,11 @@ class App {
   }
 
   findWinner() {
-    return this.gameResult.findWinner();
+    return this.gameResult.findWinner(this.rounds);
   }
 
-  printGameResult() {
-    return this.gameResult.printWinner(this);
+  printGameResult(winners) {
+    this.gameResult.printGameResult(winners);
   }
 }
 
