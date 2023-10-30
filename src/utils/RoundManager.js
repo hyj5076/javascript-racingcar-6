@@ -8,10 +8,7 @@ class RoundManager {
   }
 
   playRound() {
-    if (this.isFirstRound) {
-      Console.print(GAME_RESULT);
-      this.isFirstRound = false;
-    }
+    Console.print(GAME_RESULT);
 
     Object.keys(this.carPositions).forEach((carName) => {
       if (movingForwardCase()) {
