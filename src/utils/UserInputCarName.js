@@ -1,3 +1,4 @@
+import { Console } from "@woowacourse/mission-utils";
 import { QUESTION_CAR_NAME, ERROR_WRONG_NAME } from "../const/Messages";
 
 class UserInputCarName {
@@ -13,6 +14,15 @@ class UserInputCarName {
     this.setCarNames(carNames);
   }
 
+  async setupCarPositions() {
+    await this.inputCarName();
+    const carPositions = {};
+    this.members.forEach((carName) => {
+      carPositions[carName] = "";
+    });
+    return carPositions;
+  }
+
   setCarNames(carNames) {
     const carNamesValid = carNames.every((name) => name.length <= 5);
     if (!carNamesValid) {
@@ -23,12 +33,8 @@ class UserInputCarName {
   }
 
   getCarName() {
-    return this.members.join(",");
+    return this.members;
   }
 }
-
-/* const manager = new UserInputCarName();
-manager.inputCarName();
-Console.print(manager.getCarName()); */
 
 export default UserInputCarName;
