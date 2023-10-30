@@ -1,7 +1,7 @@
 import { GAME_RESULT, WINNER } from "../const/Messages";
 import { Console } from "@woowacourse/mission-utils";
 
-class showGameResult {
+class ShowGameResult {
   constructor(carPositions) {
     this.carPositions = carPositions;
   }
@@ -21,4 +21,4 @@ class showGameResult {
   }
 }
 
-export default showGameResult;
+export default ShowGameResult;
