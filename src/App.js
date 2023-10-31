@@ -2,6 +2,7 @@ import UserInputCarName from "./utils/UserInputCarName";
 import ShowGameResult from "./utils/ShowGameResult";
 import ShowPlayLog from "./utils/ShowPlayLog";
 import UserInputGoalNumber from "./utils/UserInputGoalNumber";
+import { Console } from "@woowacourse/mission-utils";
 
 class App {
   constructor() {
@@ -23,17 +24,7 @@ class App {
   }
 
   async playRound() {
-    const updatedCarPositions = this.playLog.updateCarPositionsAndPrint();
-
-    // 업데이트 된 자동차 위치 반영
-    this.gameResult.carPositions = updatedCarPositions;
-
-    // 우승자 확인
-    const winners = this.gameResult.findWinner(this.rounds);
-    if (winners.length > 0) {
-      this.gameResult.printGameResult(this.rounds);
-      return;
-    }
+    await this.playLog.printAllRoundLog();
   }
 
   showResult() {
