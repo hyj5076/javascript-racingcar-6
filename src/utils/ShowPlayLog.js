@@ -27,12 +27,6 @@ class ShowPlayLog {
     });
     Console.print("");
   }
-
-  // 자동차 위치 업데이트
-  updateCarPositionsAndPrint() {
-    this.printForwardDash();
-    return this.carPositions;
-  }
 }
 
 export default ShowPlayLog;
