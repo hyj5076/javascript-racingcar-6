@@ -21,16 +21,6 @@ class App {
     this.roundManager = new RoundManager(this.carPositions);
   }
 
-  /*   async playRounds() {
-    let winners;
-    do {
-      await this.playRound();
-      winners = this.findWinner();
-    } while (winners.length === 0);
-
-    this.printGameResult(winners);
-  } */
-
   async playRound() {
     await this.roundManager.playRound();
     this.printRoundResult();
@@ -44,8 +34,8 @@ class App {
     return this.gameResult.findWinner(this.rounds);
   }
 
-  printGameResult(winners) {
-    this.gameResult.printGameResult(winners);
+  printGameResult() {
+    this.gameResult.printGameResult(this);
   }
 }
 
