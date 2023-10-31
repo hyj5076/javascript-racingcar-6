@@ -2,6 +2,7 @@ import UserInputCarName from "./utils/UserInputCarName";
 import ShowGameResult from "./utils/ShowGameResult";
 import ShowRoundLog from "./utils/ShowRoundLog";
 import UserInputRound from "./utils/UserInputRound";
+import { Console } from "@woowacourse/mission-utils";
 
 class App {
   constructor() {
@@ -10,9 +11,14 @@ class App {
   }
 
   async play() {
-    await this.setupGame();
-    await this.playRound();
-    this.showResult();
+    try {
+      await this.setupGame();
+      await this.playRound();
+    } catch (error) {
+      this.endGame();
+      Console.print(error.message);
+      return Promise.reject(error);
+    }
   }
 
   async setupGame() {
@@ -27,10 +33,16 @@ class App {
     for (let i = 0; i < this.rounds; i++) {
       await this.roundLog.printAllRoundLog();
     }
+    this.showResult();
+    this.endGame();
   }
 
   showResult() {
     this.gameResult.printGameResult();
+  }
+
+  endGame() {
+    return;
   }
 }
 
