@@ -2,23 +2,26 @@ import { Console } from "@woowacourse/mission-utils";
 import { movingForwardCase } from "./MovingForwardCase";
 import { FORWARD_DASH, PLAY_LOG } from "../const/Messages";
 
-class RoundManager {
+class ShowPlayLog {
   constructor(carPositions) {
     this.carPositions = carPositions;
   }
 
-  playRound() {
+  printAllRoundLog() {
     Console.print(PLAY_LOG);
+    this.printForwardDash();
+  }
 
+  printForwardDash() {
     Object.keys(this.carPositions).forEach((carName) => {
       if (movingForwardCase()) {
         this.carPositions[carName] += FORWARD_DASH;
       }
     });
-    this.printRoundResult();
+    this.printEachCarPosition();
   }
 
-  printRoundResult() {
+  printEachCarPosition() {
     Object.entries(this.carPositions).forEach(([carName, position]) => {
       Console.print(`${carName} : ${position}`);
     });
@@ -26,4 +29,4 @@ class RoundManager {
   }
 }
 
-export default RoundManager;
+export default ShowPlayLog;
