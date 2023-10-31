@@ -1,6 +1,6 @@
 import UserInputCarName from "./utils/UserInputCarName";
 import ShowGameResult from "./utils/ShowGameResult";
-import RoundManager from "./utils/RoundManager";
+import ShowPlayLog from "./utils/ShowPlayLog";
 import UserInputGoalNumber from "./utils/UserInputGoalNumber";
 
 class App {
@@ -18,24 +18,12 @@ class App {
     this.carPositions = await this.carManager.setupCarPositions();
     this.rounds = await this.tryRound.inputGoalNumber();
     this.gameResult = new ShowGameResult(this.carPositions);
-    this.roundManager = new RoundManager(this.carPositions);
+    this.playLog = new ShowPlayLog(this.carPositions);
   }
 
   async playRound() {
-    await this.roundManager.playRound();
-    this.printRoundResult();
-  }
-
-  printRoundResult() {
-    this.roundManager.printRoundResult();
-  }
-
-  findWinner() {
-    return this.gameResult.findWinner(this.rounds);
-  }
-
-  printGameResult() {
-    this.gameResult.printGameResult(this);
+    await this.playLog.printAllRoundLog();
+    this.playLog.printEachCarPosition();
   }
 }
 
