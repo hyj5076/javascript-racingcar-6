@@ -1,29 +1,38 @@
 import { Console } from "@woowacourse/mission-utils";
 import { movingForwardCase } from "./MovingForwardCase";
-import { FORWARD_DASH, GAME_RESULT } from "../const/Messages";
+import { FORWARD_DASH, PLAY_LOG } from "../const/Messages";
 
-class RoundManager {
+class ShowPlayLog {
   constructor(carPositions) {
     this.carPositions = carPositions;
   }
 
-  playRound() {
-    Console.print(GAME_RESULT);
+  printAllRoundLog() {
+    Console.print(PLAY_LOG);
+    this.printForwardDash();
+  }
 
+  printForwardDash() {
     Object.keys(this.carPositions).forEach((carName) => {
       if (movingForwardCase()) {
         this.carPositions[carName] += FORWARD_DASH;
       }
     });
-    this.printRoundResult();
+    this.printEachCarPosition();
   }
 
-  printRoundResult() {
+  printEachCarPosition() {
     Object.entries(this.carPositions).forEach(([carName, position]) => {
       Console.print(`${carName} : ${position}`);
     });
-    Console.print(""); // 각 라운드 별 빈줄 표시
+    Console.print("");
+  }
+
+  // 자동차 위치 업데이트
+  updateCarPositionsAndPrint() {
+    this.printForwardDash();
+    return this.carPositions;
   }
 }
 
-export default RoundManager;
+export default ShowPlayLog;
