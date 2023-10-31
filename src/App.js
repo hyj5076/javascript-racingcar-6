@@ -28,7 +28,7 @@ class App {
   }
 
   showResult() {
-    this.gameResult.printGameResult(this.rounds);
+    this.gameResult.printGameResult();
   }
 }
 
