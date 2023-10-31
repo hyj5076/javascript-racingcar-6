@@ -12,6 +12,7 @@ class App {
   async play() {
     await this.setupGame();
     await this.playRound();
+    this.showResult();
   }
 
   async setupGame() {
@@ -24,6 +25,10 @@ class App {
   async playRound() {
     await this.playLog.printAllRoundLog();
     this.playLog.printEachCarPosition();
+  }
+
+  showResult() {
+    this.gameResult.printGameResult(this.rounds);
   }
 }
 
