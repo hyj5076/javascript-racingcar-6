@@ -23,8 +23,17 @@ class App {
   }
 
   async playRound() {
-    await this.playLog.printAllRoundLog();
-    this.playLog.printEachCarPosition();
+    const updatedCarPositions = this.playLog.updateCarPositionsAndPrint();
+
+    // 업데이트 된 자동차 위치 반영
+    this.gameResult.carPositions = updatedCarPositions;
+
+    // 우승자 확인
+    const winners = this.gameResult.findWinner(this.rounds);
+    if (winners.length > 0) {
+      this.gameResult.printGameResult(this.rounds);
+      return;
+    }
   }
 
   showResult() {

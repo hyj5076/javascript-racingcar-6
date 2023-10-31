@@ -25,7 +25,13 @@ class ShowPlayLog {
     Object.entries(this.carPositions).forEach(([carName, position]) => {
       Console.print(`${carName} : ${position}`);
     });
-    Console.print(""); // 각 라운드 별 빈줄 표시
+    Console.print("");
+  }
+
+  // 자동차 위치 업데이트
+  updateCarPositionsAndPrint() {
+    this.printForwardDash();
+    return this.carPositions;
   }
 }
 
