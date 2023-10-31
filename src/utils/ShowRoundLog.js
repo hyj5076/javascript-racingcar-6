@@ -2,7 +2,7 @@ import { Console } from "@woowacourse/mission-utils";
 import { movingForwardCase } from "./MovingForwardCase";
 import { FORWARD_DASH, PLAY_LOG } from "../const/Messages";
 
-class ShowPlayLog {
+class ShowRoundLog {
   constructor(carPositions) {
     this.carPositions = carPositions;
   }
@@ -29,4 +29,4 @@ class ShowPlayLog {
   }
 }
 
-export default ShowPlayLog;
+export default ShowRoundLog;

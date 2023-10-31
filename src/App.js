@@ -1,13 +1,12 @@
 import UserInputCarName from "./utils/UserInputCarName";
 import ShowGameResult from "./utils/ShowGameResult";
-import ShowPlayLog from "./utils/ShowPlayLog";
-import UserInputGoalNumber from "./utils/UserInputGoalNumber";
-import { Console } from "@woowacourse/mission-utils";
+import ShowRoundLog from "./utils/ShowRoundLog";
+import UserInputRound from "./utils/UserInputRound";
 
 class App {
   constructor() {
     this.carManager = new UserInputCarName();
-    this.tryRound = new UserInputGoalNumber();
+    this.roundManager = new UserInputRound();
   }
 
   async play() {
@@ -18,13 +17,13 @@ class App {
 
   async setupGame() {
     this.carPositions = await this.carManager.setupCarPositions();
-    this.rounds = await this.tryRound.inputGoalNumber();
+    this.rounds = await this.roundManager.inputRounds();
     this.gameResult = new ShowGameResult(this.carPositions);
-    this.playLog = new ShowPlayLog(this.carPositions);
+    this.roundLog = new ShowRoundLog(this.carPositions);
   }
 
   async playRound() {
-    await this.playLog.printAllRoundLog();
+    await this.roundLog.printAllRoundLog();
   }
 
   showResult() {
